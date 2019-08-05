@@ -1,3 +1,6 @@
+/**
+ * A simple class to demonstrate the capacity of a 4 wheel vehicle
+ */
 #ifndef Vehicle_h
 #define Vehicle_h
 

@@ -1,9 +1,9 @@
 #include "src/Vehicle.h"
 
-Vehicle vehicle(3, 4, 2, 1);
+Vehicle curiosity(3, 4, 2, 1);
 
 void setup() {
-  vehicle.test();
+  curiosity.test();
 }
 
 void loop() {

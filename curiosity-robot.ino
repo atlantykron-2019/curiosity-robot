@@ -20,14 +20,14 @@ void loop()
   uint8_t i;
   
   if (state == 'w')
-    Vehicle forward();
+    curiosity.forward();
   if (state == 's')
-    Vehicle backwards();
+    curiosity.backward();
   if (state == 'a')
-    Vehicle left();  
+    curiosity.left();  
   if (state == 'd')
-    Vehicle right();
+    curiosity.right();
   if (state == 'p')
-    Vehicle stop();  
+    curiosity.stop();  
 
 }

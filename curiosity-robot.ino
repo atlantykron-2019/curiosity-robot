@@ -13,12 +13,42 @@ void setup()
 
 void loop() 
 {
+  state = readState();
+  if (curiositySholdBeAutonomous(state)) {
+    selfDrive(sensor);
+  } else {
+    manualDrive(state);
+  }
+}
+
+/**
+ * Check if the user pressed a button
+ */
+int readState()
+{
   if(Serial.available() > 0)
   { 
     state = Serial.read(); 
   }
   uint8_t i;
+  return state;
+}
+
+/**
+ * Checks if the user wanted curiosity to be autonomous
+ */
+boolean curiositySholdBeAutonomous(int state)
+{
+  return (state == 'i');
+}
+
+void selfDrive(sensor)
+{
   
+}
+
+void manualDrive(Vehicle curiosity, int state)
+{
   if (state == 'w')
     curiosity.forward();
   if (state == 's')
@@ -29,5 +59,4 @@ void loop()
     curiosity.right();
   if (state == 'p')
     curiosity.stop();  
-
 }

@@ -80,8 +80,6 @@ void selfDrive(Vehicle curiosity)
   {
     curiosity.forward();
   }
-
-  curiosity.stop();
 }
 
 void manualDrive(Vehicle curiosity, int state)

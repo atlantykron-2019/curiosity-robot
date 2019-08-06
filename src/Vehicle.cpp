@@ -12,12 +12,32 @@ Vehicle::Vehicle(int pin_fata_dreapta, int pin_fata_stanga, int pin_spate_dreapt
   
 }
 
-void Vehicle::forward(int speed)
+void Vehicle::forward()
 {
+  int speed = 200;
   fata_dreapta.forward(speed);
   fata_stanga.forward(speed);
   spate_dreapta.forward(speed);
   spate_stanga.forward(speed);
+}
+
+void Vehicle::backward()
+{
+  int speed = 200;
+  fata_dreapta.backward(speed);
+  fata_stanga.backward(speed);
+  spate_dreapta.backward(speed);
+  spate_stanga.backward(speed);
+}
+
+void Vehicle::left()
+{
+  
+}
+
+void Vehicle::right()
+{
+  
 }
 
 void Vehicle::stop()
@@ -51,7 +71,4 @@ void Vehicle::test()
   delay(1000);
 }
 
-void Vehicle::left()
-{
-  
-}
+

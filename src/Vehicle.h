@@ -17,11 +17,13 @@ class Vehicle
   public:
     Vehicle(int pin_fata_dreapta, int pin_fata_stanga, int pin_spate_dreapta, int pin_spate_stanga);
 
-    void forward(int speed);
-
+    void forward();
+    void backward();
+    void left();
+    void right();
+    
     void stop();
     void test();
-    void left();
 };
 
 #endif

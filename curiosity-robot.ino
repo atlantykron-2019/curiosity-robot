@@ -11,11 +11,14 @@ int manual = 1;
  */
 int key = 0;
 
+int irSensor=8;
+
 Vehicle curiosity(3, 4, 2, 1);
 
 void setup()
 {
   Serial.begin(9600);
+  pinMode(irSensor, INPUT);
   //curiosity.test();
 
 }
@@ -26,7 +29,7 @@ void loop()
   changeState(manual, key);
   
   if (curiositySholdBeAutonomous(manual)) {
-    selfDrive(curiosity, sensor);
+    selfDrive(curiosity);
   } else {
     manualDrive(curiosity, key);
   }
@@ -69,10 +72,16 @@ boolean curiositySholdBeAutonomous(int manual)
 
 void selfDrive(Vehicle curiosity)
 {
-  curiosity.forward();
-  delay(1000);
-  curiosity.backward();
-  delay(1000);
+  if(digitalRead(irSensor)==LOW)
+  {
+    curiosity.left();
+  }
+  else
+  {
+    curiosity.stop();
+    delay(100);
+    curiosity.forward();
+  }
 }
 
 void manualDrive(Vehicle curiosity, int state)

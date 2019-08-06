@@ -9,10 +9,10 @@
 class Vehicle
 {
   private:
-    Motor fata_dreapta;
-    Motor fata_stanga;
-    Motor spate_dreapta;
-    Motor spate_stanga;
+    Motor motor_fd;
+    Motor motor_fs;
+    Motor motor_sd;
+    Motor motor_ss;
 
   public:
     Vehicle(int pin_fata_dreapta, int pin_fata_stanga, int pin_spate_dreapta, int pin_spate_stanga);
@@ -21,7 +21,7 @@ class Vehicle
     void backward();
     void left();
     void right();
-    
+
     void stop();
     void test();
 };

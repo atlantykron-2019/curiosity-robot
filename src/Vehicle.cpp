@@ -4,10 +4,10 @@
 
 
 Vehicle::Vehicle(int pin_fata_dreapta, int pin_fata_stanga, int pin_spate_dreapta, int pin_spate_stanga):
-  fata_dreapta(pin_fata_dreapta),
-  fata_stanga(pin_fata_stanga),
-  spate_dreapta(pin_spate_dreapta),
-  spate_stanga(pin_spate_stanga)
+  motor_fd(pin_fata_dreapta),
+  motor_fs(pin_fata_stanga),
+  motor_sd(pin_spate_dreapta),
+  motor_ss(pin_spate_stanga)
 {
   
 }
@@ -15,59 +15,67 @@ Vehicle::Vehicle(int pin_fata_dreapta, int pin_fata_stanga, int pin_spate_dreapt
 void Vehicle::forward()
 {
   int speed = 200;
-  fata_dreapta.forward(speed);
-  fata_stanga.forward(speed);
-  spate_dreapta.forward(speed);
-  spate_stanga.forward(speed);
+  motor_fd.forward(speed);
+  motor_fs.forward(speed);
+  motor_sd.forward(speed);
+  motor_ss.forward(speed);
 }
 
 void Vehicle::backward()
 {
   int speed = 200;
-  fata_dreapta.backward(speed);
-  fata_stanga.backward(speed);
-  spate_dreapta.backward(speed);
-  spate_stanga.backward(speed);
+  motor_fd.backward(speed);
+  motor_fs.backward(speed);
+  motor_sd.backward(speed);
+  motor_ss.backward(speed);
 }
 
 void Vehicle::left()
 {
-  
+  int speed = 200;
+  motor_fd.forward(speed);
+  motor_fs.backward(speed);
+  motor_sd.forward(speed);
+  motor_ss.backward(speed);
 }
 
 void Vehicle::right()
 {
-  
+  int speed = 200;
+  motor_fd.backward(speed);
+  motor_fs.forward(speed);
+  motor_sd.backward(speed);
+  motor_ss.forward(speed);
 }
 
 void Vehicle::stop()
 {
-  fata_dreapta.stop();
-  fata_stanga.stop();
-  spate_dreapta.stop();
-  spate_stanga.stop();
+  motor_fd.stop();
+  motor_fs.stop();
+  motor_sd.stop();
+  motor_ss.stop();
 }
 
 void Vehicle::test()
 {
-  fata_dreapta.forward(200);
+  motor_fd.forward(200);
   delay(1000);
-  fata_dreapta.stop();
+  motor_fd.stop();
   delay(1000);
 
-  fata_stanga.forward(200);
+  motor_fs.forward(200);
   delay(1000);
-  fata_stanga.stop();
-  delay(1000);
-  
-  spate_dreapta.forward(200);
-  delay(1000);
-  spate_dreapta.stop();
+  motor_fs.stop();
   delay(1000);
   
-  spate_stanga.forward(200);
+  motor_sd.forward(200);
   delay(1000);
-  spate_stanga.stop();
+  motor_sd.stop();
+  delay(1000);
+  
+  motor_ss.forward(200);
+  delay(1000);
+  motor_ss.stop();
   delay(1000);
 }
 

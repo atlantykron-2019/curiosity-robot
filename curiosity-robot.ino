@@ -1,50 +1,78 @@
 #include "src/Vehicle.h"
 
-int state=0;
+/**
+ * manual = 0  means that the control is autonomous
+ * manual = 1  means that the control is manual
+ */
+int manual = 1;
+
+/**
+ * this is the value of the pressed key
+ */
+int key = 0;
 
 Vehicle curiosity(3, 4, 2, 1);
 
-void setup() 
+void setup()
 {
   Serial.begin(9600);
   //curiosity.test();
 
 }
 
-void loop() 
+void loop()
 {
-  state = readState();
-  if (curiositySholdBeAutonomous(state)) {
-    selfDrive(sensor);
+  key = readKey();
+  changeState(manual, key);
+  
+  if (curiositySholdBeAutonomous(manual)) {
+    selfDrive(curiosity, sensor);
   } else {
-    manualDrive(state);
+    manualDrive(curiosity, key);
   }
 }
 
 /**
- * Check if the user pressed a button
- */
-int readState()
+   Check if the user pressed a button
+*/
+
+int readKey()
 {
-  if(Serial.available() > 0)
-  { 
-    state = Serial.read(); 
+  int state = 0;
+  if (Serial.available() > 0)
+  {
+    state = Serial.read();
   }
-  uint8_t i;
   return state;
 }
 
-/**
- * Checks if the user wanted curiosity to be autonomous
- */
-boolean curiositySholdBeAutonomous(int state)
+void changeState(int &manual, int key)
 {
-  return (state == 'i');
+  if (key < 20) {
+    return;
+  }
+  if (key == 'i') {
+    manual = 0;
+  } else {
+    manual = 1;
+  }
+  return;
 }
 
-void selfDrive(sensor)
+/**
+   Checks if the user wanted curiosity to be autonomous
+*/
+boolean curiositySholdBeAutonomous(int manual)
 {
-  
+  return (manual == 0);
+}
+
+void selfDrive(Vehicle curiosity)
+{
+  curiosity.forward();
+  delay(1000);
+  curiosity.backward();
+  delay(1000);
 }
 
 void manualDrive(Vehicle curiosity, int state)
@@ -54,9 +82,9 @@ void manualDrive(Vehicle curiosity, int state)
   if (state == 's')
     curiosity.backward();
   if (state == 'a')
-    curiosity.left();  
+    curiosity.left();
   if (state == 'd')
     curiosity.right();
   if (state == 'p')
-    curiosity.stop();  
+    curiosity.stop();
 }
